@@ -1,46 +1,50 @@
-require 'json'
+# frozen_string_literal: true
 
 feature 'Sign in user', js: true do
-  rand = Time.now.to_i.to_s
+  rand = SecureRandom.hex
   login = "tstusr_#{rand}"
   password = 'pass1234'
-  mail = "tstusr_#{rand}@gmail.com"
+  email = "tstusr_#{rand}@gmail.com"
+  user = {
+    login: login,
+    password: password,
+    email: email
+  }
+  before(:each) do
+    @base_page = BasePage.new
+    @base_page.load
+    expect(@base_page.page_header.text).to include('Redmine@testautomate.me')
+  end
 
   scenario 'User can sign up' do
-    visit('http://testautomate.me/redmine/')
-    expect(page).to have_content('Redmine@testautomate.me')
+    @base_page.menu.sign_up_link.click
+    @sign_up_page = SignUpPage.new
 
-    find('.register').click
+    @sign_up_page.login_field.set login
+    @sign_up_page.password_field.set password
+    @sign_up_page.confirm_password_field.set password
+    @sign_up_page.first_name_field.set 'tstusr'
+    @sign_up_page.user_lastname_field.set 'tstusr'
+    @sign_up_page.email_field.set email
+    @sign_up_page.create_user_button.click
 
-    find('#user_login').set login
-    find('#user_password').set password
-    find('#user_password_confirmation').set password
-    find('#user_firstname').set 'tstusr'
-    find('#user_lastname').set 'tstusr'
-    find('#user_mail').set mail
-    find('#new_user > input[type=submit]:nth-child(4)').click
-    fail_message = "User is not registered."
-    expect(page).to have_content('Your account has been activated. You can now log in.'), fail_message
+    expect(@base_page).to have_content('Your account has been activated. You can now log in.')
 
-    File.open("./test_data/registered_user.txt", "w") do |f|
-      f << [login, password, mail]
+    File.open('./test_data/registered_user.yml', 'w') do |f|
+      f << user.to_yaml
     end
   end
 
   scenario 'User can log in' do
-    visit('http://testautomate.me/redmine/')
-    expect(page).to have_content 'Redmine@testautomate.me'
+    registered_user = YAML.load_file('./test_data/registered_user.yml')
 
-    file = File.read('./test_data/registered_user.txt')
-    registered_user = JSON.parse(file)
+    @base_page.menu.sign_in_link.click
+    @sign_in_page = SignInPage.new
 
-    find('.login').click
+    @sign_in_page.login_field.set registered_user[:login]
+    @sign_in_page.password_field.set registered_user[:password]
+    @sign_in_page.submit_log_in_button.click
 
-    find('#username').set registered_user[0]
-    find('#password').set registered_user[1]
-
-    find('#login-submit').click
-
-    expect(page).to have_content 'Logged in as tstusr'
+    expect(@base_page.menu.active_user.text).to include registered_user[:login].to_s
   end
 end
