@@ -3,6 +3,7 @@
 source 'https://rubygems.org'
 
 gem 'capybara'
+gem 'ffaker'
 gem 'reek'
 gem 'require_all'
 gem 'rspec'

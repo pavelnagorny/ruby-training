@@ -8,6 +8,7 @@ require 'yaml'
 
 require_all 'lib/sections'
 require_all 'lib/pages'
+require_all 'spec/helpers'
 
 RSpec.configure do
   def options
