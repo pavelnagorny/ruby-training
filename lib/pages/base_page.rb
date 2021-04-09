@@ -2,6 +2,6 @@
 
 class BasePage < SitePrism::Page
   section :menu, MenuSection, '#top-menu'
-  set_url 'http://testautomate.me/redmine/'
+  set_url CommonVars::BASE_URL
   element :page_header, '#header > h1'
 end

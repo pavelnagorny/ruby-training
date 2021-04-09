@@ -2,6 +2,7 @@
 
 require 'ffaker'
 
+# Generates user data
 class User
   attr_reader :login, :password, :email, :first_name, :last_name
 
