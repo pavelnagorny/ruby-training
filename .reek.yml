@@ -20,3 +20,6 @@ detectors:
   FeatureEnvy:
     exclude:
       - 'APIWrapper'
+  TooManyConstants:
+    exclude:
+      - 'CommonVars'
