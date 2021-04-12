@@ -5,7 +5,7 @@ module FileHelper
   # Save data to .yml file
   # @user [Hash] hash with user credentials
   def save_to_file(user)
-    File.open('./test_data/registered_user.yml', 'w') do |file|
+    File.open('./test_data/registered_user.yml', 'a') do |file|
       file << user.to_yaml
     end
   end

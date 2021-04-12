@@ -1,14 +1,15 @@
 # frozen_string_literal: true
 
+require 'dotenv/load'
 require 'capybara/rspec'
 require 'require_all'
 require 'selenium-webdriver'
 require 'site_prism'
-require 'yaml'
 
+require_all 'spec/support'
 require_all 'lib/sections'
 require_all 'lib/pages'
-require_all 'spec/helpers'
+require_all 'models'
 
 RSpec.configure do
   def options

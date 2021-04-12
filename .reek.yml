@@ -17,3 +17,6 @@ detectors:
   DuplicateMethodCall:
     exclude:
       - 'FeatureHelper'
+  FeatureEnvy:
+    exclude:
+      - 'APIWrapper'
