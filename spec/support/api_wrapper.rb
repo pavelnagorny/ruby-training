@@ -9,15 +9,7 @@ module APIWrapper
     response = RestClient::Request.execute(method: :post,
                                            url: "#{CommonVars::BASE_URL}users.json",
                                            headers: CommonVars::API_HEADERS,
-                                           payload: {
-                                             user: {
-                                               login: user.login,
-                                               password: user.password,
-                                               firstname: user.first_name,
-                                               lastname: user.last_name,
-                                               mail: user.email
-                                             }
-                                           })
+                                           payload: { user: read_from_file })
     raise 'User was not created via API' unless response.code == 201
   end
 end
