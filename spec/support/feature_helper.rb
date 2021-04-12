@@ -6,9 +6,9 @@ module FeatureHelper
     @sign_up_page.login_field.set user.login
     @sign_up_page.password_field.set user.password
     @sign_up_page.confirm_password_field.set user.password
-    @sign_up_page.first_name_field.set user.first_name
-    @sign_up_page.user_lastname_field.set user.last_name
-    @sign_up_page.email_field.set user.email
+    @sign_up_page.first_name_field.set user.firstname
+    @sign_up_page.user_lastname_field.set user.lastname
+    @sign_up_page.email_field.set user.mail
   end
 
   def sign_up_user(user)
