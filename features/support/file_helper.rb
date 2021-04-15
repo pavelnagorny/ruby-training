@@ -5,6 +5,7 @@ module FileHelper
   # Save data to .yml file
   # @user [Hash] hash with user credentials
   def save_to_file(user)
+    FileUtils.mkdir_p('./temp') unless File.exist?('./temp')
     File.open('./temp/registered_user.yml', 'w') do |file|
       file << user.to_yaml
     end
