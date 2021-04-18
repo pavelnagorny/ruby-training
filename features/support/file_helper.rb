@@ -6,7 +6,7 @@ module FileHelper
   # @user [Hash] hash with user credentials
   def save_to_file(user)
     FileUtils.mkdir_p('./temp') unless File.exist?('./temp')
-    File.open('./temp/registered_user.yml', 'w') do |file|
+    File.open('./temp/registered_user.yml', 'a') do |file|
       file << user.to_yaml
     end
   end
@@ -19,5 +19,9 @@ module FileHelper
     instance_variables.map do |var|
       [var[1..].to_sym, instance_variable_get(var)]
     end.to_h
+  end
+
+  def xml_to_hash(xml)
+    Hash.from_xml(xml)
   end
 end

@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
+require 'active_support/core_ext/hash'
 require 'dotenv/load'
 require 'capybara/cucumber'
 require 'require_all'
 require 'rspec/expectations'
 require 'selenium-webdriver'
 require 'site_prism'
+require 'pry'
 
 require_all 'features/support'
 require_all 'lib/sections'

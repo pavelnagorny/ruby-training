@@ -8,7 +8,7 @@ feature 'Sign in user', js: true do
   before(:each) do
     @base_page = BasePage.new
     @base_page.load
-    @user = User.new
+    @user = User.new('admin')
     expect(@base_page.page_header.text).to include('Redmine@testautomate.me')
   end
 

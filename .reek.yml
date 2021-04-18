@@ -8,12 +8,16 @@ detectors:
       - 'BasePage'
       - 'SignInPage'
       - 'SignUpPage'
-      - 'MenuSection'
+      - 'TopMenuSection'
       - 'User'
+      - 'IssuesPage'
+      - 'ProjectsPage'
+      - 'SpentTimePage'
+      - 'CommonVars'
   TooManyInstanceVariables:
     max_instance_variables: 10
   TooManyStatements:
-    max_statements: 10
+    max_statements: 20
   DuplicateMethodCall:
     exclude:
       - 'FeatureHelper'
