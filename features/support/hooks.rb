@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
-Before('@auth_feature') do
+Before do
   @base_page = BasePage.new
-  @user = User.new
 end
 
 After do |scenario|

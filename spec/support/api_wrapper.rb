@@ -17,7 +17,15 @@ module APIWrapper
     response = RestClient::Request.execute(method: :post,
                                            url: CommonVars::PROJ_URL,
                                            headers: CommonVars::API_XML_HEADERS,
-                                           payload: read_from_file(filename: './data/new_public_project.xml'))
+                                           payload: {
+                                             project: {
+                                               name: FFaker::Company.name,
+                                               identifier: FFaker::Internet.slug,
+                                               description: FFaker::Lorem.paragraph,
+                                               is_public: true,
+                                               enabled_module_names: %w[time_tracking issue_tracking]
+                                             }
+                                           })
     raise 'Project has not been created via API' unless response.code == 201
   end
 
