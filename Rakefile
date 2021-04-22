@@ -7,7 +7,7 @@ end
 
 desc 'This task will create cucumber report folder structure'
 task :create_report_folder_structure do
-  Dir.mkdir 'temp' unless Dir.exist? 'artifacts'
+  Dir.mkdir 'temp' unless Dir.exist? 'temp'
   Dir.mkdir 'temp/reports' unless Dir.exist? 'temp/reports'
   Dir.mkdir 'temp/reports/junit' unless Dir.exist? 'temp/reports/junit'
   Dir.mkdir 'temp/reports/json' unless Dir.exist? 'temp/reports/json'
