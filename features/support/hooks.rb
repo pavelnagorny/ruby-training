@@ -6,9 +6,8 @@ end
 
 After do |scenario|
   if scenario.failed?
-    screen_path = "temp/#{Time.now.strftime('%Y-%m-%d_%H:%M:%S')}.png"
+    screen_path = "temp/screenshots/#{Time.now.strftime('%Y-%m-%d_%H:%M:%S')}.png"
     page.save_screenshot(screen_path)
-    @logger.info "Screenshot is saved to #{screen_path}"
   end
   Capybara.reset_session!
 end
