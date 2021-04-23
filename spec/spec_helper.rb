@@ -13,7 +13,7 @@ require_all 'models'
 
 RSpec.configure do
   def options
-    Selenium::WebDriver::Chrome::Options.new(args: %w[window-size=1800,1000])
+    Selenium::WebDriver::Chrome::Options.new(args: %w[window-size=1800,1000 --headless])
   end
 
   Capybara.default_driver = :selenium
