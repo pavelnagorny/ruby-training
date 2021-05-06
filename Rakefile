@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 desc 'This task triggers execution of all tests'
 task :all_tests_execution do
   %w[create_report_folder_structure run_cucumber_tests].each do |task_name|
